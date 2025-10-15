@@ -1,16 +1,30 @@
 FROM python:3.11-slim
 
+ARG USER=appuser
+RUN groupadd -r $USER && useradd -r -g $USER $USER
+
 WORKDIR /app
 
-# install system deps for psql and building wheels
-RUN apt-get update && apt-get install -y build-essential libpq-dev postgresql-client && rm -rf /var/lib/apt/lists/*
-
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+RUN apt-get update \
+&& apt-get install -y --no-install-recommends \
+   gcc \
+   libpq-dev \
+   build-essential \
+   libjpeg-dev \
+   zlib1g-dev \
+&& pip install --no-cache-dir -r requirements.txt \
+&& apt-get remove -y --purge build-essential \
+&& apt-get autoremove -y \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
-# Normalize CRLF to LF and make entrypoint executable
-RUN sed -i 's/\r$//' docker-entrypoint.sh && chmod +x docker-entrypoint.sh
+USER $USER
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+EXPOSE 8000
+
+# Use Render's dynamic port if provided
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
