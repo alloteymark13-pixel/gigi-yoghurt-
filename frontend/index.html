@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GiGi Yoghurt — Pure. Creamy. Iconic.</title>
+  <meta name="description" content="GiGi Yoghurt — premium handcrafted yoghurt made with natural ingredients. Wholesale & retail. Request samples.">
+  <meta property="og:title" content="GiGi Yoghurt — Pure. Creamy. Iconic." />
+  <meta property="og:description" content="Premium handcrafted yoghurt from Ghana — Vanilla, Strawberry, Coconut, Shredded Coconut. Wholesale & retail." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1590080875832-42dd2350140d?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent: #e84c78;
+      --accent-2: #ff9c66;
+      --muted: #6b6b6b;
+      --glass: rgba(255,255,255,0.6);
+    }
+    html,body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    h1,h2,h3{font-family: "Playfair Display", serif}
+    html { scroll-behavior: smooth; }
+    :focus { outline: 3px solid rgba(232,76,120,0.16); outline-offset: 3px; }
+    .prod-image { box-shadow: 0 18px 45px rgba(15,15,15,0.08); border-radius: 12px; }
+    .backdrop { background: rgba(0,0,0,0.55); }
+    .toast { animation: fadein .24s ease-out; }
+    @keyframes fadein { from { opacity: 0; transform: translateY(6px)} to { opacity: 1; transform: translateY(0) } }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"GiGi Yoghurt",
+    "url":"https://example.com",
+    "logo":"https://images.unsplash.com/photo-1590080875832-42dd2350140d?auto=format&fit=crop&w=1200&q=80",
+    "contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"orders@gigiyoghurt.gh","telephone":"+233-000-000-000"}]
+  }
+  </script>
+</head>
+<body class="bg-gradient-to-b from-[#fffaf7] to-[#fff6f4] text-gray-800 antialiased">
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+    <header class="sticky top-5 z-40 backdrop-blur-md bg-white/60 rounded-xl drop-shadow-md border border-white/50 mb-8">
+      <div class="flex items-center justify-between gap-6 py-4 px-5">
+        <a href="#" class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#ff8ea0] to-[#e84c78] flex items-center justify-center text-white text-lg font-semibold shadow-md">GiGi</div>
+          <div>
+            <h1 class="text-lg font-semibold">GiGi Yoghurt</h1>
+            <p class="text-xs text-slate-500 -mt-0.5">Pure • Creamy • Iconic</p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
+          <a class="hover:text-[#e84c78] transition" href="#products">Flavours</a>
+          <a class="hover:text-[#e84c78] transition" href="#about">About</a>
+          <a class="hover:text-[#e84c78] transition" href="#wholesale">Wholesale</a>
+          <a class="hover:text-[#e84c78] transition" href="#contact">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button id="cartBtn" aria-haspopup="dialog" aria-controls="cartDrawer" class="relative inline-flex items-center gap-2 bg-white border border-slate-100 px-3 py-2 rounded-lg shadow-sm hover:shadow-md transition">
+            <svg class="w-5 h-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l3-8H6.4L7 13zM7 13l-1 5h13l-1-5M7 13h10"/></svg>
+            <span id="cartCount" class="text-sm font-semibold text-slate-800">0</span>
+          </button>
+          <a href="#order" class="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-[#e84c78] to-[#ff9c66] text-white px-4 py-2 rounded-lg shadow hover:opacity-95 transition font-semibold">Order Now</a>
+
+          <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-white/30 bg-white/70">
+            <svg class="w-6 h-6 text-slate-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileNav" class="md:hidden px-5 pb-4 hidden">
+        <nav class="flex flex-col gap-2 text-sm font-medium">
+          <a href="#products" class="py-2 rounded-md hover:bg-white/50 px-3">Flavours</a>
+          <a href="#about" class="py-2 rounded-md hover:bg-white/50 px-3">About</a>
+          <a href="#wholesale" class="py-2 rounded-md hover:bg-white/50 px-3">Wholesale</a>
+          <a href="#contact" class="py-2 rounded-md hover:bg-white/50 px-3">Contact</a>
+        </nav>
+      </div>
+
+    </header>
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-16">
+      <div>
+        <span class="inline-block bg-rose-50 text-rose-600 px-3 py-1 rounded-full text-xs font-semibold">Small-batch • Natural</span>
+        <h2 class="mt-6 text-4xl lg:text-5xl font-extrabold leading-tight text-slate-900">Yoghurt that tastes like home — premium, handcrafted, unforgettable.</h2>
+        <p class="mt-4 text-lg text-slate-600 max-w-xl">GiGi Yoghurt blends local milk, real fruit, and careful culture to create a creamy, tangy masterpiece. Perfect for retail, cafes, and large-scale events.</p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#products" class="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-r from-[#e84c78] to-[#ff9c66] text-white font-semibold shadow-lg">Explore Flavours</a>
+          <a href="#wholesale" class="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-slate-200 text-slate-700">Wholesale & Events</a>
+        </div>
+
+        <div class="mt-8 flex gap-6">
+          <div>
+            <div class="text-2xl font-bold">4.9 ★</div>
+            <div class="text-sm text-slate-500">Customer rating</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">120k+</div>
+            <div class="text-sm text-slate-500">Units sold</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">30+</div>
+            <div class="text-sm text-slate-500">Retail partners</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="rounded-2xl bg-white/60 p-6 shadow-2xl" style="backdrop-filter:blur(8px)">
+          <div class="flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1590080875832-42dd2350140d?auto=format&fit=crop&w=800&q=80" alt="GiGi Yoghurt Cup" class="prod-image w-72 h-72 object-cover rounded-2xl">
+          </div>
+          <div class="mt-4 text-center">
+            <div class="text-xs text-slate-500">Batch • Fresh today</div>
+            <div class="text-lg font-semibold">GiGi Classic Cup</div>
+          </div>
+        </div>
+
+        <div class="absolute -left-6 -bottom-6 bg-white rounded-xl p-4 shadow-md border border-white/50">
+          <div class="text-xs text-slate-500">Sample Boxes</div>
+          <div class="font-semibold">Request a sample</div>
+          <a href="#contact" class="mt-2 inline-block text-sm text-[#e84c78]">Start conversation →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h3 class="text-2xl font-bold">Signature Flavours</h3>
+          <p class="text-sm text-slate-500">Vanilla, Strawberry, Coconut, Shredded Coconut — real ingredients, premium texture.</p>
+        </div>
+
+        <div class="hidden sm:flex gap-4">
+          <button class="filterBtn px-3 py-2 rounded-lg bg-white border">All</button>
+          <button class="filterBtn px-3 py-2 rounded-lg bg-white border">Fruit</button>
+          <button class="filterBtn px-3 py-2 rounded-lg bg-white border">Tropical</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="bg-white rounded-2xl shadow-lg p-5 flex flex-col items-center text-center">
+          <div class="w-36 h-36 rounded-xl overflow-hidden mb-4">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1623066499516-dfe8cf9c4f25?auto=format&fit=crop&w=800&q=80" alt="Vanilla Yoghurt">
+          </div>
+          <h4 class="text-lg font-semibold">Vanilla</h4>
+          <p class="text-sm text-slate-500 mt-2">Classic, creamy, real vanilla bean aroma.</p>
+          <div class="mt-4 flex items-center gap-3">
+            <div class="text-xl font-bold">GHS 18</div>
+            <div class="text-sm text-slate-400">/ 250g</div>
+          </div>
+          <div class="mt-5 flex gap-3">
+            <button class="viewBtn px-4 py-2 rounded-lg border hover:bg-slate-50" data-id="vanilla">View</button>
+            <button class="addBtn px-4 py-2 rounded-lg bg-[#e84c78] text-white" data-id="vanilla">Add</button>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-lg p-5 flex flex-col items-center text-center">
+          <div class="w-36 h-36 rounded-xl overflow-hidden mb-4">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1601050690597-8baf4e1979d7?auto=format&fit=crop&w=800&q=80" alt="Strawberry Yoghurt">
+          </div>
+          <h4 class="text-lg font-semibold">Strawberry</h4>
+          <p class="text-sm text-slate-500 mt-2">Real strawberry puree, vibrant and fruity.</p>
+          <div class="mt-4 flex items-center gap-3">
+            <div class="text-xl font-bold">GHS 20</div>
+            <div class="text-sm text-slate-400">/ 250g</div>
+          </div>
+          <div class="mt-5 flex gap-3">
+            <button class="viewBtn px-4 py-2 rounded-lg border hover:bg-slate-50" data-id="strawberry">View</button>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-lg p-5 flex flex-col items-center text-center">
+          <div class="w-36 h-36 rounded-xl overflow-hidden mb-4">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1568051243850-66f546e3ab50?auto=format&fit=crop&w=800&q=80" alt="Coconut Yoghurt">
+          </div>
+          <h4 class="text-lg font-semibold">Coconut</h4>
+          <p class="text-sm text-slate-500 mt-2">Silky coconut cream, tropical & light.</p>
+          <div class="mt-4 flex items-center gap-3">
+            <div class="text-xl font-bold">GHS 22</div>
+            <div class="text-sm text-slate-400">/ 250g</div>
+          </div>
+          <div class="mt-5 flex gap-3">
+            <button class="viewBtn px-4 py-2 rounded-lg border hover:bg-slate-50" data-id="coconut">View</button>
+            <button class="addBtn px-4 py-2 rounded-lg bg-[#e84c78] text-white" data-id="coconut">Add</button>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-lg p-5 flex flex-col items-center text-center">
+          <div class="w-36 h-36 rounded-xl overflow-hidden mb-4">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1590080875832-42dd2350140d?auto=format&fit=crop&w=800&q=80" alt="Shredded Coconut Yoghurt">
+          </div>
+          <h4 class="text-lg font-semibold">Shredded Coconut</h4>
+          <p class="text-sm text-slate-500 mt-2">Shredded coconut added for texture and crunch.</p>
+          <div class="mt-4 flex items-center gap-3">
+            <div class="text-xl font-bold">GHS 24</div>
+            <div class="text-sm text-slate-400">/ 250g</div>
+          </div>
+          <div class="mt-5 flex gap-3">
+            <button class="viewBtn px-4 py-2 rounded-lg border hover:bg-slate-50" data-id="shredded">View</button>
+            <button class="addBtn px-4 py-2 rounded-lg bg-[#e84c78] text-white" data-id="shredded">Add</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div id="productModal" class="fixed inset-0 hidden items-center justify-center z-50">
+      <div class="backdrop fixed inset-0"></div>
+      <div class="relative bg-white rounded-2xl max-w-4xl w-full mx-6 shadow-2xl overflow-hidden">
+        <button id="closeModal" class="absolute right-4 top-4 rounded-lg p-2 text-slate-600 hover:bg-slate-100">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="p-6">
+            <img id="modalImg" src="" alt="product" class="w-full h-72 object-cover rounded-xl">
+          </div>
+          <div class="p-6">
+            <h3 id="modalTitle" class="text-2xl font-semibold"></h3>
+            <p id="modalDesc" class="mt-3 text-slate-600"></p>
+            <div class="mt-6 flex items-center gap-4">
+              <div id="modalPrice" class="text-2xl font-bold"></div>
+              <div class="ml-auto flex items-center gap-2">
+                <label for="qty" class="text-sm text-slate-500">Qty</label>
+                <input id="qty" type="number" min="1" value="1" class="w-20 rounded-md border px-3 py-2">
+              </div>
+            </div>
+            <div class="mt-6 flex gap-3">
+              <button id="modalAdd" class="px-4 py-3 rounded-lg bg-[#e84c78] text-white font-semibold">Add to cart</button>
+              <a href="#wholesale" class="px-4 py-3 rounded-lg border">Wholesale inquiry</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="wholesale" class="mb-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 bg-white rounded-2xl p-6 shadow">
+        <h3 class="text-xl font-semibold">Wholesale & Events</h3>
+        <p class="mt-3 text-slate-600">Custom pricing, branded packaging, refrigerated logistics and reliable supply. Trusted by cafes and event planners across Ghana.</p>
+        <ul class="mt-4 grid grid-cols-2 gap-3 text-sm text-slate-500">
+          <li>• Co-packaging & private label</li>
+          <li>• Refrigerated delivery</li>
+          <li>• Event catering & sampling</li>
+          <li>• Shelf-life & QC reports</li>
+        </ul>
+        <div class="mt-6 flex gap-3">
+          <a href="#contact" class="px-4 py-3 rounded-lg bg-[#e84c78] text-white">Get a Quote</a>
+          <a href="#contact" class="px-4 py-3 rounded-lg border">Request sample</a>
+        </div>
+      </div>
+
+      <aside class="bg-white rounded-2xl p-6 shadow">
+        <h4 class="font-semibold">What people say</h4>
+        <div class="mt-4 space-y-4 text-slate-600 text-sm">
+          <div class="p-3 bg-slate-50 rounded-lg">“GiGi’s Strawberry sells out every brunch — our customers love it.” — Sophia, Cafe owner</div>
+          <div class="p-3 bg-slate-50 rounded-lg">“Reliable deliveries and superb texture.” — Daniel, Event planner</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div class="bg-white rounded-2xl p-8 shadow">
+        <h3 class="text-xl font-semibold">About GiGi</h3>
+        <p class="mt-4 text-slate-600">We partner with local farms to source fresh milk and fruits. Small-batch production, careful culturing, and rigorous quality checks ensure a consistent, premium product. Our mission: nourish every table with joyful flavour.</p>
+
+        <div class="mt-6 grid grid-cols-3 gap-4">
+          <div class="text-center">
+            <div class="text-2xl font-bold">100%</div>
+            <div class="text-sm text-slate-500">Natural</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold">48h</div>
+            <div class="text-sm text-slate-500">Small-batch turnaround</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold">30+</div>
+            <div class="text-sm text-slate-500">Retail partners</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="contact" class="bg-white rounded-2xl p-8 shadow">
+        <h3 class="text-lg font-semibold">Contact & Orders</h3>
+        <p class="mt-2 text-slate-500 text-sm">For samples, wholesale pricing or partnerships, send us a message and we’ll respond within one business day.</p>
+
+        <form id="contactForm" class="mt-6 grid gap-3">
+          <input name="name" class="border px-4 py-3 rounded-lg" placeholder="Full name" required>
+          <input name="email" type="email" class="border px-4 py-3 rounded-lg" placeholder="Email address" required>
+          <input name="company" class="border px-4 py-3 rounded-lg" placeholder="Company (optional)">
+          <textarea name="message" rows="4" class="border px-4 py-3 rounded-lg" placeholder="Tell us about your request" required></textarea>
+          <div class="flex items-center gap-3">
+            <button class="px-5 py-3 rounded-lg bg-[#e84c78] text-white font-semibold" type="submit">Send inquiry</button>
+            <div id="formStatus" class="text-sm text-slate-500"></div>
+          </div>
+          <div class="text-xs text-slate-400">Or email: <strong>orders@gigiyoghurt.gh</strong></div>
+        </form>
+      </div>
+    </section>
+
+    <div id="cartDrawer" aria-hidden="true" class="fixed right-0 top-0 h-full w-full md:w-96 transform translate-x-full transition-transform z-50">
+      <div class="absolute inset-0 backdrop-blur-md bg-black/40"></div>
+      <div class="relative h-full bg-white p-6 shadow-2xl">
+        <button id="closeCart" class="absolute right-4 top-4 p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <h4 class="text-lg font-semibold">Your Order</h4>
+        <div id="cartItems" class="mt-6 space-y-4 text-sm"></div>
+
+        <div id="cartEmpty" class="mt-6 text-center text-slate-500">Your cart is empty.</div>
+
+        <div id="cartFooter" class="mt-6 hidden">
+          <div class="flex items-center justify-between text-sm text-slate-600">
+            <div>Subtotal</div>
+            <div id="cartSubtotal" class="font-semibold">GHS 0</div>
+          </div>
+          <div class="mt-4">
+            <button id="checkoutBtn" class="w-full px-4 py-3 rounded-lg bg-[#e84c78] text-white font-semibold">Checkout (mock)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-12 mb-10 text-center text-sm text-slate-500">
+      © <span id="year"></span> GiGi Yoghurt — Crafted with love in Ghana • Built for impact
+    </footer>
+  </div>
+
+  <div id="toasts" class="fixed bottom-6 right-6 space-y-3 z-50"></div>
+
+  <script>
+  const PRODUCTS = {
+    vanilla: {
+      id: 'vanilla',
+      title: 'Vanilla',
+      price: 18,
+      unit: '250g',
+      img: 'https://images.unsplash.com/photo-1623066499516-dfe8cf9c4f25?auto=format&fit=crop&w=1200&q=80',
+      desc: 'Classic, smooth, and lightly sweetened with natural vanilla beans for a timeless taste.'
+    },
+    strawberry: {
+      id: 'strawberry',
+      title: 'Strawberry',
+      price: 20,
+      unit: '250g',
+      img: 'https://images.unsplash.com/photo-1601050690597-8baf4e1979d7?auto=format&fit=crop&w=1200&q=80',
+      desc: 'Fresh and fruity, made with real strawberries for that perfect balance of sweetness and tang.'
+    },
+    coconut: {
+      id: 'coconut',
+      title: 'Coconut',
+      price: 22,
+      unit: '250g',
+      img: 'https://images.unsplash.com/photo-1568051243850-66f546e3ab50?auto=format&fit=crop&w=1200&q=80',
+      desc: 'Rich, creamy, and tropical — pure coconut bliss in every spoonful.'
+    },
+    shredded: {
+      id: 'shredded',
+      title: 'Shredded Coconut',
+      price: 24,
+      unit: '250g',
+      img: 'https://images.unsplash.com/photo-1590080875832-42dd2350140d?auto=format&fit=crop&w=1200&q=80',
+      desc: 'A perfect mix of smooth yoghurt and real shredded coconut for a delightful crunch.'
+    }
+  };
+
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+  const toast = (text, timeout = 3000) => {
+    const c = document.createElement('div');
+    c.className = 'toast bg-white px-4 py-3 rounded-lg shadow-md';
+    c.innerText = text;
+    $('#toasts').appendChild(c);
+    setTimeout(()=> c.remove(), timeout);
+  };
+
+  const modal = $('#productModal');
+  const modalImg = $('#modalImg');
+  const modalTitle = $('#modalTitle');
+  const modalDesc = $('#modalDesc');
+  const modalPrice = $('#modalPrice');
+  const modalAdd = $('#modalAdd');
+  const qtyInput = $('#qty');
+
+  let modalCurrent = null;
+
+  $$('.viewBtn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const id = e.currentTarget.dataset.id;
+      openProductModal(id);
+    });
+  });
+
+  function openProductModal(id) {
+    const p = PRODUCTS[id];
+    modalImg.src = p.img;
+    modalTitle.textContent = p.title;
+    modalDesc.textContent = p.desc;
+    modalPrice.textContent = `GHS ${p.price}`;
+    qtyInput.value = 1;
+    modalCurrent = id;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('#qty').focus();
+  }
+
+  $('#closeModal').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+    modalCurrent = null;
+  }
+
+  const CART_KEY = 'gigi_cart_v1';
+  let cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+
+  function saveCart(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); renderCart(); updateCartCount(); }
+
+  function updateCartCount(){
+    const count = Object.values(cart).reduce((s, x) => s + x.qty, 0);
+    $('#cartCount').textContent = count;
+  }
+
+  function addToCart(id, qty = 1){
+    if (!cart[id]) cart[id] = { ...PRODUCTS[id], qty: 0 };
+    cart[id].qty += +qty;
+    saveCart();
+    toast(`${PRODUCTS[id].title} added to cart`);
+  }
+
+  $$('.addBtn').forEach(btn => btn.addEventListener('click', e => {
+    const id = e.currentTarget.dataset.id;
+    addToCart(id, 1);
+  }));
+
+  modalAdd.addEventListener('click', () => {
+    if (!modalCurrent) return;
+    const q = Math.max(1, parseInt(qtyInput.value || 1, 10));
+    addToCart(modalCurrent, q);
+    closeModal();
+  });
+
+  const cartDrawer = $('#cartDrawer');
+  document.getElementById('cartBtn').addEventListener('click', () => {
+    openCart();
+  });
+  $('#closeCart').addEventListener('click', closeCart);
+
+  function openCart(){
+    cartDrawer.style.transform = 'translateX(0)';
+    cartDrawer.setAttribute('aria-hidden','false');
+    renderCart();
+  }
+  function closeCart(){
+    cartDrawer.style.transform = 'translateX(100%)';
+    cartDrawer.setAttribute('aria-hidden','true');
+  }
+
+  function renderCart(){
+    const itemsEl = $('#cartItems'); itemsEl.innerHTML = '';
+    const emptyEl = $('#cartEmpty'); const footer = $('#cartFooter');
+    const keys = Object.keys(cart);
+    if (keys.length === 0) {
+      emptyEl.style.display = ''; footer.classList.add('hidden'); $('#cartSubtotal').textContent = 'GHS 0';
+      $('#cartCount').textContent = 0;
+      return;
+    }
+    emptyEl.style.display = 'none'; footer.classList.remove('hidden');
+    let subtotal = 0;
+    keys.forEach(id => {
+      const item = cart[id];
+      const line = document.createElement('div');
+      line.className = 'flex items-center gap-3';
+
+      const img = document.createElement('img'); img.src = item.img; img.alt = item.title; img.className = 'w-14 h-14 rounded-lg object-cover';
+      const meta = document.createElement('div'); meta.className = 'flex-1';
+      meta.innerHTML = `<div class="font-semibold">${item.title}</div><div class="text-xs text-slate-500">${item.unit}</div>`;
+
+      const controls = document.createElement('div'); controls.className = 'flex items-center gap-2';
+      const qty = document.createElement('input'); qty.type = 'number'; qty.value = item.qty; qty.min = 1; qty.className = 'w-16 rounded-md border px-2 py-1 text-sm';
+      qty.addEventListener('change', (e) => { item.qty = Math.max(1, parseInt(e.target.value || 1, 10)); saveCart(); });
+
+      const removeBtn = document.createElement('button'); removeBtn.className = 'text-sm text-red-600'; removeBtn.textContent = 'Remove';
+      removeBtn.addEventListener('click', () => { delete cart[id]; saveCart(); });
+
+      controls.appendChild(qty);
+      controls.appendChild(removeBtn);
+
+      line.appendChild(img); line.appendChild(meta); line.appendChild(controls);
+      itemsEl.appendChild(line);
+
+      subtotal += item.price * item.qty;
+    });
+    $('#cartSubtotal').textContent = `GHS ${subtotal.toFixed(2)}`;
+    updateCartCount();
+  }
+
+  $('#checkoutBtn').addEventListener('click', () => {
+    if (Object.keys(cart).length === 0) { toast('Cart is empty'); return; }
+    const order = { createdAt: new Date().toISOString(), items: cart, subtotal: Object.values(cart).reduce((s,i)=>s+i.price*i.qty,0) };
+    console.log('Mock order:', order);
+    cart = {}; saveCart();
+    closeCart();
+    toast('Order placed (mock). We will contact you to confirm delivery.');
+  });
+
+  saveCart();
+
+  const contactForm = $('#contactForm');
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(contactForm);
+    const payload = Object.fromEntries(data.entries());
+    $('#formStatus').textContent = 'Sending…';
+    try {
+      await new Promise(res => setTimeout(res, 800));
+      $('#formStatus').textContent = 'Message sent — we will reply within 1 business day.';
+      contactForm.reset();
+      toast('Inquiry sent — thank you!');
+    } catch (err) {
+      console.error(err);
+      $('#formStatus').textContent = 'Failed to send. Try again later.';
+      toast('Failed to send inquiry');
+    }
+  });
+
+  $('#menuBtn').addEventListener('click', () => {
+    $('#mobileNav').classList.toggle('hidden');
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+      closeCart();
+      $('#mobileNav').classList.add('hidden');
+    }
+  });
+
+  $$('.viewBtn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const id = e.currentTarget.dataset.id;
+      openProductModal(id);
+    });
+  });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('opacity-100','translate-y-0');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  $$('.prod, section, article, .feature').forEach(el => {
+    el.classList.add('opacity-0','translate-y-6','transition','duration-700','ease-out');
+    obs.observe(el);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  $$('.filterBtn').forEach(b => b.addEventListener('click', (e) => {
+    $$('.filterBtn').forEach(x => x.classList.remove('bg-slate-100'));
+    e.currentTarget.classList.add('bg-slate-100');
+  }));
+  </script>
+</body>
+</html>
