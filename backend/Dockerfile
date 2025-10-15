@@ -10,9 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Normalize CRLF to LF and make entrypoint executable
-RUN sed -i 's/\r$//' docker-entrypoint.sh && chmod +x docker-entrypoint.sh
-
 ENTRYPOINT ["./docker-entrypoint.sh"]
 EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "--port", "8000"]
