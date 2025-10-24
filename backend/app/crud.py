@@ -82,14 +82,14 @@ def reserve_ingredients_for_batch(db: Session, batch_id: int):
             return {"error":"insufficient_stock", "ingredient": ing.name, "needed": needed, "on_hand": qty_on_hand}
     txs = []
     try:
-        with db.begin():
-            for ing, needed in needed_list:
-                tx = models.InventoryTx(ingredient_id=ing.ingredient_id, quantity=-needed, tx_type="OUT", ref=f"reserve_batch_{batch.batch_code}")
-                db.add(tx)
-                db.flush()
-                txs.append({"ingredient_id":ing.ingredient_id, "name":ing.name, "quantity": -needed, "tx_id": tx.tx_id})
-            batch.status = "reserved"
-            db.add(batch)
+        for ing, needed in needed_list:
+            tx = models.InventoryTx(ingredient_id=ing.ingredient_id, quantity=-needed, tx_type="OUT", ref=f"reserve_batch_{batch.batch_code}", timestamp=datetime.utcnow())
+            db.add(tx)
+            db.flush()
+            txs.append({"ingredient_id":ing.ingredient_id, "name":ing.name, "quantity": -needed, "tx_id": tx.tx_id})
+        batch.status = "reserved"
+        db.commit()
+        db.refresh(batch)
     except Exception as e:
         db.rollback()
         return {"error":"reservation_failed", "detail": str(e)}
