@@ -1,4 +1,10 @@
 from pydantic import BaseModel, EmailStr
+try:
+    # Pydantic v2
+    from pydantic import ConfigDict  # type: ignore
+    HAS_PYDANTIC_V2 = True
+except Exception:  # pragma: no cover - fallback for v1
+    HAS_PYDANTIC_V2 = False
 from typing import Optional
 from datetime import date, datetime
 
@@ -37,8 +43,12 @@ class OrderOut(BaseModel):
     notes: Optional[str]
     created_at: Optional[datetime]
 
-    class Config:
-        orm_mode = True
+    # Support both Pydantic v1 and v2
+    if HAS_PYDANTIC_V2:
+        model_config = ConfigDict(from_attributes=True)  # type: ignore
+    else:
+        class Config:  # type: ignore
+            orm_mode = True
 
 class UserCreate(BaseModel):
     username: str
@@ -53,8 +63,12 @@ class UserOut(BaseModel):
     is_active: bool
     is_admin: bool
 
-    class Config:
-        orm_mode = True
+    # Support both Pydantic v1 and v2
+    if HAS_PYDANTIC_V2:
+        model_config = ConfigDict(from_attributes=True)  # type: ignore
+    else:
+        class Config:  # type: ignore
+            orm_mode = True
 
 class Token(BaseModel):
     access_token: str
