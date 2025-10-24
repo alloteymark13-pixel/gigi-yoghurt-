@@ -7,7 +7,8 @@ from ..auth_utils import create_access_token, decode_token
 from datetime import timedelta
 
 router = APIRouter(prefix="/auth", tags=["auth"])
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
+# Allow optional token for bootstrap user creation by disabling auto error
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token", auto_error=False)
 
 @router.post("/token", response_model=schemas.Token)
 def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
@@ -18,7 +19,11 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
     return {"access_token": access_token, "token_type": "bearer"}
 
 @router.post("/users", response_model=schemas.UserOut)
-def create_user(user_in: schemas.UserCreate, db: Session = Depends(get_db), token: str | None = Depends(oauth2_scheme)):
+def create_user(
+    user_in: schemas.UserCreate,
+    db: Session = Depends(get_db),
+    token: str | None = Depends(oauth2_scheme),
+):
     # bootstrap: allow first user if no users exist
     user_count = db.query(models.User).count()
     if user_count > 0:
