@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr
+from pydantic import ConfigDict
 from typing import Optional
 from datetime import date, datetime
 
@@ -37,8 +38,7 @@ class OrderOut(BaseModel):
     notes: Optional[str]
     created_at: Optional[datetime]
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class UserCreate(BaseModel):
     username: str
@@ -53,8 +53,7 @@ class UserOut(BaseModel):
     is_active: bool
     is_admin: bool
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class Token(BaseModel):
     access_token: str
