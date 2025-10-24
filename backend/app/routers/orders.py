@@ -15,27 +15,6 @@ def list_orders(limit: int = 200, db: Session = Depends(get_db)):
     rows = crud.get_orders(db, limit=limit)
     return rows
 
-@router.get("/{order_id}", response_model=schemas.OrderOut)
-def get_order(order_id: int, db: Session = Depends(get_db)):
-    o = crud.get_order(db, order_id)
-    if not o:
-        raise HTTPException(status_code=404, detail="Order not found")
-    return o
-
-@router.put("/{order_id}", response_model=schemas.OrderOut)
-def update_order(order_id: int, order_updates: dict, db: Session = Depends(get_db)):
-    o = crud.update_order(db, order_id, order_updates)
-    if not o:
-        raise HTTPException(status_code=404, detail="Order not found")
-    return o
-
-@router.delete("/{order_id}", response_model=dict)
-def delete_order(order_id: int, db: Session = Depends(get_db)):
-    ok = crud.delete_order(db, order_id)
-    if not ok:
-        raise HTTPException(status_code=404, detail="Order not found")
-    return {"ok": True}
-
 @router.get("/dashboard", response_model=dict)
 def dashboard(db: Session = Depends(get_db)):
     rows = crud.get_orders(db, limit=10000)
@@ -57,3 +36,24 @@ def dashboard(db: Session = Depends(get_db)):
         "total_revenue": round(total_revenue,2),
         "average_order_value": avg
     }
+
+@router.get("/{order_id}", response_model=schemas.OrderOut)
+def get_order(order_id: int, db: Session = Depends(get_db)):
+    o = crud.get_order(db, order_id)
+    if not o:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return o
+
+@router.put("/{order_id}", response_model=schemas.OrderOut)
+def update_order(order_id: int, order_updates: dict, db: Session = Depends(get_db)):
+    o = crud.update_order(db, order_id, order_updates)
+    if not o:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return o
+
+@router.delete("/{order_id}", response_model=dict)
+def delete_order(order_id: int, db: Session = Depends(get_db)):
+    ok = crud.delete_order(db, order_id)
+    if not ok:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return {"ok": True}
